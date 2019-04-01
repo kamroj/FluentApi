@@ -8,14 +8,10 @@ import java.util.function.Supplier;
  */
 class FluentConditionals {
     private boolean condition;
-    private Supplier<String> stringSupplier;
     static Runnable doNothing = () -> {};
 
     private FluentConditionals(boolean condition) {
         this.condition = condition;
-    }
-    private FluentConditionals(Supplier<String> stringSupplier) {
-        this.stringSupplier = stringSupplier;
     }
 
     static <T> ElseReturn<T> given(Supplier<T> stringSupplier) {
@@ -48,6 +44,8 @@ class FluentConditionals {
         return new ElseReturn<>(condition, t);
     }
 
+    static Runnable doNothing(){ return ()->{}; }
+
 
     static class ElseReturn <T> {
         private T t;
@@ -77,7 +75,7 @@ class FluentConditionals {
         ElseReturn<T> then(Consumer<T> consumer) {
             if (condition)
                 consumer.accept(t);
-            return new ElseReturn<>(condition);
+            return new ElseReturn<>(condition, t);
         }
 
         void orElse(Runnable t) {

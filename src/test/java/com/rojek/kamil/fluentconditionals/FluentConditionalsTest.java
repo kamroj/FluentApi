@@ -1,5 +1,6 @@
 package com.rojek.kamil.fluentconditionals;
 
+import static com.rojek.kamil.fluentconditionals.FluentConditionals.doNothing;
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.when;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
@@ -84,5 +85,16 @@ public class FluentConditionalsTest {
                 .orElse(TestHelper::getLowNumber);
 
         assertTrue(result == 1);
+    }
+
+    @Test
+    public void testGiven(){
+        FluentConditionals.given("this").when(true)
+                .then(TestHelper::printFirstChar)
+                .orElse(TestHelper::printLastChar);
+
+        FluentConditionals.given(() -> "this").when(() -> false)
+                .then(TestHelper::printLastChar)
+                .orElse(doNothing());
     }
 }

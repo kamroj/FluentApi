@@ -19,8 +19,8 @@ class IfElseParametrized {
 
         given(TestHelper::getAString)//"a string"
                 .when(!TestHelper.somethingIsTrue())
-                .then(TestHelper::printFirstChar);
-                //.orElse(doNothing());
+                .then(TestHelper::printFirstChar)
+                .orElse(doNothing());
     //nothing printed
 
         given(TestHelper::getAString)//"a string"
