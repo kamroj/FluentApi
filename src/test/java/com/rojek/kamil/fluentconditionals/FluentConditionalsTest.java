@@ -66,12 +66,12 @@ public class FluentConditionalsTest {
     @Test
     public void testReturn(){
         int result = FluentConditionals.when(true)
-                                    .thenReturn(TestHelper::getHighNumber)
-                                    .orElse(0);
+                    .thenReturn(TestHelper::getHighNumber)
+                    .orElse(0);
 
         int result2 = FluentConditionals.when(false)
-                .thenReturn(TestHelper::getHighNumber)
-                .orElse(0);
+                    .thenReturn(TestHelper.getHighNumber())
+                    .orElse(0);
 
         assertTrue(result == 1000);
         assertTrue(result2 == 0);
