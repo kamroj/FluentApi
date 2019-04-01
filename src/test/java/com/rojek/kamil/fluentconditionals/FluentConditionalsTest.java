@@ -74,8 +74,8 @@ public class FluentConditionalsTest {
                     .thenReturn(TestHelper.getHighNumber())
                     .orElse(0);
 
-        assertTrue(result == 1000);
-        assertTrue(result2 == 0);
+        assertEquals(result, 1000);
+        assertEquals(result2, 0);
     }
 
     @Test
@@ -84,12 +84,16 @@ public class FluentConditionalsTest {
                 .thenReturn(TestHelper::getHighNumber)
                 .orElse(TestHelper::getLowNumber);
 
-        assertTrue(result == 1);
+        assertEquals(result, 1);
     }
 
     @Test
     public void testGiven(){
         FluentConditionals.given("this").when(true)
+                .then(TestHelper::printFirstChar)
+                .orElse(TestHelper::printLastChar);
+
+        FluentConditionals.given("this").when(false)
                 .then(TestHelper::printFirstChar)
                 .orElse(TestHelper::printLastChar);
 
