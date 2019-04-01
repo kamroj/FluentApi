@@ -1,0 +1,3 @@
+# ABOUT AdamWykladDrugi
+## PREREQUISITES
+## RUNNING
