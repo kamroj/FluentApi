@@ -9,7 +9,7 @@ public class IfElse {
 
     public static void main(String[] args) {
 
-        when(TestHelper.somethingIsTrue())
+        FluentConditionals.when(TestHelper.somethingIsTrue())
                 .then(TestHelper::printBar)
                 .orElse(TestHelper::printFoo);
         //'Bar' printed to console

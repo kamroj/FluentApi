@@ -1,5 +1,6 @@
 package com.rojek.kamil.fluentconditionals;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -7,10 +8,22 @@ import java.util.function.Supplier;
  */
 class FluentConditionals {
     private boolean condition;
+    private Supplier<String> stringSupplier;
     static Runnable doNothing = () -> {};
 
     private FluentConditionals(boolean condition) {
         this.condition = condition;
+    }
+    private FluentConditionals(Supplier<String> stringSupplier) {
+        this.stringSupplier = stringSupplier;
+    }
+
+    static <T> ElseReturn<T> given(Supplier<T> stringSupplier) {
+        return new ElseReturn<>(stringSupplier.get());
+    }
+
+    static <T> ElseReturn<T> given(T t) {
+        return new ElseReturn<>(t);
     }
 
     static FluentConditionals when(Supplier<Boolean> supplier){
@@ -36,11 +49,16 @@ class FluentConditionals {
     }
 
 
-    class ElseReturn <T> extends FluentConditionals{
+    static class ElseReturn <T> {
         private T t;
+        private boolean condition;
 
         ElseReturn(boolean condition) {
-            super(condition);
+            this.condition = condition;
+        }
+
+        ElseReturn(T t) {
+            this.t = t;
         }
 
         ElseReturn(boolean condition, T t) {
@@ -48,8 +66,28 @@ class FluentConditionals {
             this.t = t;
         }
 
+        ElseReturn<T> when(boolean condition){
+            return new ElseReturn<>(condition, t);
+        }
+
+        ElseReturn<T> when(Supplier<Boolean> isTrue){
+            return new ElseReturn<>(isTrue.get(), t);
+        }
+
+        ElseReturn<T> then(Consumer<T> consumer) {
+            if (condition)
+                consumer.accept(t);
+            return new ElseReturn<>(condition);
+        }
+
         void orElse(Runnable t) {
-            t.run();
+            if(!condition)
+                t.run();
+        }
+
+        void orElse(Consumer<T> consumer) {
+            if(!condition)
+                consumer.accept(t);
         }
 
         T orElse(Supplier<T> t) {
@@ -71,7 +109,6 @@ class FluentConditionals {
                 throw e;
             return t;
         }
-
     }
 
 

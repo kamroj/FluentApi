@@ -25,7 +25,7 @@ public class FluentConditionalsTest {
     public void testThenFunction(){
         Runnable firstRunnable = mock(Runnable.class);
 
-        FluentConditionals fc = FluentConditionals.when(true).then(firstRunnable);
+        FluentConditionals.when(true).then(firstRunnable);
         verify(firstRunnable).run();
     }
 

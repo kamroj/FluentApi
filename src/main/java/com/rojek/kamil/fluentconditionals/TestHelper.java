@@ -1,11 +1,9 @@
 package com.rojek.kamil.fluentconditionals;
 
-import java.util.function.Predicate;
-
 /**
  * @author Kamil Rojek
  */
-public class TestHelper {
+class TestHelper {
     static boolean somethingIsTrue() {
         return true;
     }
