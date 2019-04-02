@@ -1,6 +1,4 @@
-package com.rojek.kamil.fluentconditionals;
-
-import static com.rojek.kamil.fluentconditionals.FluentConditionals.when;
+import com.rojek.kamil.fluentconditionals.FluentConditionals;
 
 /**
  * @author Kamil Rojek

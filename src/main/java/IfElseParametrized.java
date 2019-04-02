@@ -1,4 +1,3 @@
-package com.rojek.kamil.fluentconditionals;
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 
 class IfElseParametrized {
@@ -32,7 +31,7 @@ class IfElseParametrized {
         given(TestHelper::getAString)//"a string"
                 .when(!TestHelper.somethingIsTrue())
                 .then(TestHelper::printFirstChar)
-                .orElseThrow(new RuntimeException());
+                .orElseThrowE(new RuntimeException());
     //exception thrown
     }
 }

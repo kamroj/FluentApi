@@ -1,4 +1,4 @@
-package com.rojek.kamil.fluentconditionals;
+import com.rojek.kamil.fluentconditionals.FluentConditionals;
 
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 

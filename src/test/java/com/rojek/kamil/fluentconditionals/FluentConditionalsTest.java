@@ -1,7 +1,7 @@
 package com.rojek.kamil.fluentconditionals;
 
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.doNothing;
-import static com.rojek.kamil.fluentconditionals.FluentConditionals.when;
+import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
@@ -46,7 +46,7 @@ public class FluentConditionalsTest {
         //Exception exception = mock(RuntimeException.class);
         Runnable runnable = mock(Runnable.class);
 
-        FluentConditionals.when(false).then(runnable).orElseThrow(TestHelper.createException());
+        FluentConditionals.when(false).then(runnable).orElseThrowE(TestHelper.createException());
     }
 
     @Test(expectedExceptions = RuntimeException.class)
@@ -61,7 +61,7 @@ public class FluentConditionalsTest {
         //Exception exception = mock(RuntimeException.class);
         Runnable runnable = mock(Runnable.class);
         FluentConditionals.when(true).then(runnable).orElseThrow(TestHelper::createException);
-        FluentConditionals.when(true).then(runnable).orElseThrow(TestHelper.createException());
+        FluentConditionals.when(true).then(runnable).orElseThrowE(TestHelper.createException());
     }
 
     @Test
@@ -100,5 +100,44 @@ public class FluentConditionalsTest {
         FluentConditionals.given(() -> "this").when(() -> false)
                 .then(TestHelper::printLastChar)
                 .orElse(doNothing());
+    }
+
+    @Test(expectedExceptions = RuntimeException.class)
+    public void thenThrowTest(){
+        FluentConditionals.when(true).thenThrow(RuntimeException::new, "asd");
+    }
+
+    @Test(expectedExceptions = RuntimeException.class)
+    public void testOrElseThrow(){
+        FluentConditionals.when(false)
+                .then(TestHelper::printBar)
+                .orElseThrow(RuntimeException::new);
+    }
+
+    @Test(expectedExceptions = RuntimeException.class)
+    public void testThenReturnR(){
+        FluentConditionals.given("Greetings")
+                .when(() -> true)
+                .thenReturn(String::hashCode)
+                .orElseThrow(IllegalAccessError::new, "Exception message");
+
+        FluentConditionals.given("Greetings")
+                .when(() -> true)
+                .thenReturn(() -> "asd")
+                .orElseThrow(IllegalAccessError::new, "Exception message");
+
+        FluentConditionals.given("Greetings")
+                .when(() -> true)
+                .orElseThrow(RuntimeException::new, "Exception message");
+
+        FluentConditionals.given("Greetings")
+                .when(() -> false)
+                .orElseThrow(RuntimeException::new, "Exception message");
+    }
+
+    @Test
+    public void testExceptionThrower(){
+
+
     }
 }

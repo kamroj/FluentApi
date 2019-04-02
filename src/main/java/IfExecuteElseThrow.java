@@ -1,6 +1,4 @@
-package com.rojek.kamil.fluentconditionals;
-
-import static com.rojek.kamil.fluentconditionals.FluentConditionals.when;
+import com.rojek.kamil.fluentconditionals.FluentConditionals;
 
 //Task 2
 public class IfExecuteElseThrow {
@@ -9,7 +7,7 @@ public class IfExecuteElseThrow {
 
         FluentConditionals.when(TestHelper::somethingIsTrue)
                 .then(TestHelper::printBar)
-                .orElseThrow(new RuntimeException());
+                .orElseThrowE(new RuntimeException());
         //'Bar' printed to console
 
         FluentConditionals.when(TestHelper::somethingIsTrue)

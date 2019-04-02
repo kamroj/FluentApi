@@ -1,4 +1,3 @@
-package com.rojek.kamil.fluentconditionals;
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 
 /**
@@ -30,10 +29,10 @@ public class IfElseParametrizedThenReturn {
                 .orElse(TestHelper::getLowNumber);
         System.out.println(result4);//1
 
-//        int result5 = given("Greetings")
-//                .when(!TestHelper.somethingIsTrue())
-//                .thenReturn(String::length)
-//                .orElseThrow(RuntimeException::new);
-//        //exception thrown
+        int result5 = given("Greetings")
+                .when(!TestHelper.somethingIsTrue())
+                .thenReturn(String::length)
+                .orElseThrow(RuntimeException::new);
+        //exception thrown
     }
 }

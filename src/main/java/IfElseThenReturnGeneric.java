@@ -1,5 +1,3 @@
-package com.rojek.kamil.fluentconditionals;
-
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 
 /**
