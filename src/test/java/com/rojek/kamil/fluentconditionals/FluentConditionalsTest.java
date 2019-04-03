@@ -1,16 +1,15 @@
 package com.rojek.kamil.fluentconditionals;
 
-import static com.rojek.kamil.fluentconditionals.FluentConditionals.doNothing;
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
+import org.testng.annotations.Test;
+
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
-import org.testng.annotations.Test;
 
 /**
  * @author Kamil Rojek
  */
 public class FluentConditionalsTest {
-
     @Test
     public void testFluentConditional() {
         //FluentConditionals mock = mock(FluentConditionals.class);
@@ -26,7 +25,7 @@ public class FluentConditionalsTest {
     public void testThenFunction(){
         Runnable firstRunnable = mock(Runnable.class);
 
-        FluentConditionals.when(true).then(firstRunnable);
+        FluentConditionals.when(true).then(firstRunnable).orElse(firstRunnable);
         verify(firstRunnable).run();
     }
 
@@ -67,12 +66,12 @@ public class FluentConditionalsTest {
     @Test
     public void testReturn(){
         int result = FluentConditionals.when(true)
-                    .thenReturn(TestHelper::getHighNumber)
-                    .orElse(0);
+                .thenReturn(TestHelper::getHighNumber)
+                .orElse(0);
 
         int result2 = FluentConditionals.when(false)
-                    .thenReturn(TestHelper.getHighNumber())
-                    .orElse(0);
+                .thenReturn(TestHelper.getHighNumber())
+                .orElse(0);
 
         assertEquals(result, 1000);
         assertEquals(result2, 0);
@@ -97,9 +96,10 @@ public class FluentConditionalsTest {
                 .then(TestHelper::printFirstChar)
                 .orElse(TestHelper::printLastChar);
 
-        FluentConditionals.given(() -> "this").when(() -> false)
+        FluentConditionals.given(() -> "this")
+                .when(() -> false)
                 .then(TestHelper::printLastChar)
-                .orElse(doNothing());
+                .orElse(TestHelper::printFirstChar);
     }
 
     @Test(expectedExceptions = RuntimeException.class)
@@ -128,10 +128,12 @@ public class FluentConditionalsTest {
 
         FluentConditionals.given("Greetings")
                 .when(() -> true)
+                .then(TestHelper::printFirstChar)
                 .orElseThrow(RuntimeException::new, "Exception message");
 
         FluentConditionals.given("Greetings")
                 .when(() -> false)
+                .then(TestHelper::printFirstChar)
                 .orElseThrow(RuntimeException::new, "Exception message");
     }
 
@@ -140,4 +142,5 @@ public class FluentConditionalsTest {
 
 
     }
+
 }

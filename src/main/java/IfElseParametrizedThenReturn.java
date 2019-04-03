@@ -1,4 +1,4 @@
-import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
+import static com.rojek.kamil.fluentconditionals.FluentConditionals.given;
 
 /**
  * @author Kamil Rojek

@@ -1,5 +1,6 @@
 import com.rojek.kamil.fluentconditionals.FluentConditionals;
 
+
 //Task 2
 public class IfExecuteElseThrow {
 

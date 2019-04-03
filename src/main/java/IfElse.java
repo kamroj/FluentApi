@@ -1,5 +1,3 @@
-import com.rojek.kamil.fluentconditionals.FluentConditionals;
-
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 
 /**
@@ -9,7 +7,7 @@ public class IfElse {
 
     public static void main(String[] args) {
 
-        FluentConditionals.when(TestHelper.somethingIsTrue())
+        when(TestHelper.somethingIsTrue())
                 .then(TestHelper::printBar)
                 .orElse(TestHelper::printFoo);
         //'Bar' printed to console
