@@ -11,7 +11,7 @@ public class OrElseGivenReturn<GivenType, ReturnType> {
     private GivenType givenType;
     private Function<GivenType, ReturnType> ifTrueFunction;
 
-    public OrElseGivenReturn(boolean condition, GivenType givenType, Function<GivenType, ReturnType> function) {
+    OrElseGivenReturn(boolean condition, GivenType givenType, Function<GivenType, ReturnType> function) {
         this.condition = condition;
         this.givenType = givenType;
         this.ifTrueFunction = function;

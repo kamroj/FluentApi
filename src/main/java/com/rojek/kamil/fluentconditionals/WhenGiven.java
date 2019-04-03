@@ -9,7 +9,7 @@ public class WhenGiven<GivenType> {
 
     private GivenType givenType;
 
-    public WhenGiven(GivenType givenType) {
+    WhenGiven(GivenType givenType) {
         this.givenType = givenType;
     }
 

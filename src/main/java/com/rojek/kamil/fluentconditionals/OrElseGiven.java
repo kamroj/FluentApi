@@ -12,7 +12,7 @@ public class OrElseGiven<GivenType> {
     private GivenType givenType;
     private Consumer<GivenType> givenTypeTrueConsumer;
 
-    public OrElseGiven(boolean condition, GivenType givenType, Consumer<GivenType> givenTypeTrueConsumer) {
+    OrElseGiven(boolean condition, GivenType givenType, Consumer<GivenType> givenTypeTrueConsumer) {
         this.condition = condition;
         this.givenType = givenType;
         this.givenTypeTrueConsumer = givenTypeTrueConsumer;
@@ -28,8 +28,7 @@ public class OrElseGiven<GivenType> {
 
 
     public <ExceptionType extends Throwable> void orElseThrowE(ExceptionType exceptionType) throws ExceptionType {
-        orElseThrow(() -> exceptionType);
-    }
+        orElseThrow(() -> exceptionType); }
 
     public <ExceptionType extends Throwable> void orElseThrow(Function<String, ExceptionType> exceptionType, String message) throws ExceptionType {
         orElseThrow(() -> exceptionType.apply(message));

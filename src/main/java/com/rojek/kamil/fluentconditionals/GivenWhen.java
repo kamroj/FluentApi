@@ -11,7 +11,7 @@ public class GivenWhen<GivenType>{
     private GivenType givenType;
     private boolean condition;
 
-    public GivenWhen(boolean condition, GivenType givenType) {
+    GivenWhen(boolean condition, GivenType givenType) {
         this.condition = condition;
         this.givenType = givenType;
     }

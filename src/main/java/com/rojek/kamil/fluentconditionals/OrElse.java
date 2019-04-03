@@ -10,7 +10,7 @@ public class OrElse {
     private Runnable runnableTrue;
     private boolean condition;
 
-    public OrElse(boolean condition, Runnable runnable) {
+    OrElse(boolean condition, Runnable runnable) {
         this.condition = condition;
         this.runnableTrue = runnable;
     }

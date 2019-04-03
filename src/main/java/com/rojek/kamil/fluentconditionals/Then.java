@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 public class Then {
     private boolean condition;
 
-    public Then(boolean isTrue) {
+    Then(boolean isTrue) {
         this.condition = isTrue;
     }
 

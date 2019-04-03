@@ -10,7 +10,7 @@ public class ThenReturn<ReturnType> {
     private Supplier<ReturnType> supplierIsTrue;
 
 
-    public ThenReturn(boolean condition, Supplier<ReturnType> supplier) {
+    ThenReturn(boolean condition, Supplier<ReturnType> supplier) {
         this.condition = condition;
         this.supplierIsTrue = supplier;
     }

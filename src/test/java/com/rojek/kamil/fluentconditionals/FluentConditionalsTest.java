@@ -3,6 +3,8 @@ package com.rojek.kamil.fluentconditionals;
 import static com.rojek.kamil.fluentconditionals.FluentConditionals.*;
 import org.testng.annotations.Test;
 
+import java.util.function.Function;
+
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
@@ -19,6 +21,14 @@ public class FluentConditionalsTest {
     @Test
     public void testBooleanFunctionInterface(){
         assertNotNull(when(()-> true));
+    }
+
+    @Test
+    public void testDoNothing(){
+        given(TestHelper::getAString)//"a string"
+                .when(!TestHelper.somethingIsTrue())
+                .then(TestHelper::printFirstChar)
+                .orElse(FluentConditionals.doNothing());
     }
 
     @Test
@@ -137,10 +147,14 @@ public class FluentConditionalsTest {
                 .orElseThrow(RuntimeException::new, "Exception message");
     }
 
-    @Test
+    @Test(expectedExceptions = RuntimeException.class)
     public void testExceptionThrower(){
+        FluentConditionals.given("asdsad").when(()->false).then(TestHelper::printFirstChar).orElseThrowE(new RuntimeException());
+    }
 
-
+    @Test
+    public void testOrElseGivenReturn(){
+        //FluentConditionals.given("asd").when(()->true).thenReturn().
     }
 
 }
